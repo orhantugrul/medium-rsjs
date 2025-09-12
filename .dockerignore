@@ -1,0 +1,57 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+*.md
+
+# Docker
+Dockerfile
+.dockerignore
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Environment files
+.env*
+
+# Temporary files
+*.tmp
+*.temp
+/tmp/
+
+# Coverage reports
+coverage.txt
+coverage.html
+coverage.out
+
+# Air live reload
+tmp/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Build output (will be built inside container)
+/build/
+/dist/
+/bin/
