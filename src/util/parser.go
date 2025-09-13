@@ -43,15 +43,15 @@ type Item struct {
 //   - Normalizes publication dates to RFC3339 format
 //   - Returns a fully processed Document ready for use
 func ParseDocument(data []byte) (*Document, error) {
-	var rss Document
+	document := Document{}
 
-	err := xml.Unmarshal(data, &rss)
+	err := xml.Unmarshal(data, &document)
 	if err != nil {
 		return nil, err
 	}
 
-	items := make([]Item, 0, len(rss.Channel.Items))
-	for _, item := range rss.Channel.Items {
+	items := make([]Item, 0, len(document.Channel.Items))
+	for _, item := range document.Channel.Items {
 		items = append(items, Item{
 			Title:      extractValue(item.Title),
 			Link:       item.Link,
@@ -64,9 +64,9 @@ func ParseDocument(data []byte) (*Document, error) {
 
 	return &Document{
 		Channel: Channel{
-			Title:       extractValue(rss.Channel.Title),
-			Description: extractValue(rss.Channel.Description),
-			Link:        rss.Channel.Link,
+			Title:       extractValue(document.Channel.Title),
+			Description: extractValue(document.Channel.Description),
+			Link:        document.Channel.Link,
 			Items:       items,
 		},
 	}, nil
@@ -106,25 +106,12 @@ func extractValue(text string) string {
 //
 // Returns:
 //   - string: Date in RFC3339 format, or current time if parsing fails
-//
-// Supported date formats:
-//   - RFC1123Z (Mon, 02 Jan 2006 15:04:05 -0700)
-//   - RFC1123 (Mon, 02 Jan 2006 15:04:05 MST)
-//   - RFC3339 (2006-01-02T15:04:05Z07:00)
-//   - Custom format (Mon, 2 Jan 2006 15:04:05 GMT)
 func extractDate(date string) string {
-	formats := []string{
-		time.RFC1123Z,
-		time.RFC1123,
-		time.RFC3339,
-		"Mon, 2 Jan 2006 15:04:05 GMT",
+	format := "Mon, 2 Jan 2006 15:04:05 GMT"
+
+	if t, err := time.Parse(format, date); err == nil {
+		return t.Format(time.RFC3339)
 	}
 
-	for _, format := range formats {
-		if t, err := time.Parse(format, date); err == nil {
-			return t.Format(time.RFC3339)
-		}
-	}
-
-	return time.Now().Format(time.RFC3339) // fallback
+	return time.Now().Format(time.RFC3339)
 }
