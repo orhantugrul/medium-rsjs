@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -18,7 +17,8 @@ type Config struct {
 
 func NewConfig() Config {
 	config := Config{
-		Port: ":8080",
+		Port:           ":8080",
+		TrustedProxies: []string{"127.0.0.1"},
 	}
 
 	if os.Getenv("GIN_MODE") == "release" {
@@ -53,17 +53,12 @@ func main() {
 	}))
 	router.Use(gin.Recovery())
 
-	if len(config.TrustedProxies) > 0 {
-		log.Printf("🛡️ Setting trusted proxies: %v", config.TrustedProxies)
-		router.SetTrustedProxies(config.TrustedProxies)
-	}
-
 	api := router.Group("/api")
 	{
 		feed.BindRoutes(api)
 
-		api.GET("/health", func(c *gin.Context) {
-			c.JSON(http.StatusOK, gin.H{
+		api.GET("/health", func(context *gin.Context) {
+			context.JSON(http.StatusOK, gin.H{
 				"status":  "✨ healthy",
 				"service": "Medium RSJS API",
 				"version": "1.0.0",

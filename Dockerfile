@@ -45,6 +45,7 @@ EXPOSE 8080
 # Set environment variables
 ENV GIN_MODE=release
 ENV PORT=8080
+ENV TRUSTED_PROXIES=10.0.0.0/8
 
 # Run the application
 CMD ["./main"]
