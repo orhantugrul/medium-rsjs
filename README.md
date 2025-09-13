@@ -1,6 +1,6 @@
 # medium-rsjs
 
-[![🐹 Build](https://github.com/orhantugrul/medium-rsjs/actions/workflows/build.yml/badge.svg)](https://github.com/orhantugrul/medium-rsjs/actions/workflows/build.yml)
+[![🚀 Push to ghcr.io](https://github.com/orhantugrul/medium-rsjs/actions/workflows/docker-build.yml/badge.svg)](https://github.com/orhantugrul/medium-rsjs/actions/workflows/docker-build.yml)
 
 A lightweight Go API that fetches and parses Medium RSS feeds, providing clean JSON responses for easy consumption.
 
