@@ -6,8 +6,6 @@ import (
 	"time"
 )
 
-// Document represents the root structure of an RSS/XML feed document.
-// It contains a single Channel which holds all the feed information and items.
 type Document struct {
 	Channel Channel `xml:"channel"`
 }
