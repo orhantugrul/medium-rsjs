@@ -78,6 +78,7 @@ curl http://localhost:8080/api/feed/@username
 ```json
 {
   "title": "User's Medium Feed",
+  "description": "Stories by User on Medium",
   "link": "https://medium.com/@username",
   "posts": [
     {
@@ -85,7 +86,79 @@ curl http://localhost:8080/api/feed/@username
       "link": "https://medium.com/@username/article-slug",
       "author": "Author Name",
       "published": "2024-01-01T12:00:00Z",
-      "content": "Article content...",
+      "content": [
+        {
+          "tag": "h4",
+          "children": [
+            {
+              "value": "Article Section"
+            }
+          ]
+        },
+        {
+          "tag": "p",
+          "children": [
+            {
+              "value": "Article content with structured HTML elements..."
+            }
+          ]
+        },
+        {
+          "tag": "ul",
+          "children": [
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "tag": "strong",
+                  "children": [
+                    {
+                      "value": "Bold text"
+                    }
+                  ]
+                },
+                {
+                  "value": " and regular text"
+                }
+              ]
+            },
+            {
+              "tag": "li",
+              "children": [
+                {
+                  "value": "Another list item"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "figure",
+          "children": [
+            {
+              "tag": "img",
+              "attributes": [
+                {
+                  "name": "src",
+                  "value": "https://example.com/image.jpg"
+                },
+                {
+                  "name": "alt",
+                  "value": "Example image"
+                }
+              ]
+            },
+            {
+              "tag": "figcaption",
+              "children": [
+                {
+                  "value": "Image caption"
+                }
+              ]
+            }
+          ]
+        }
+      ],
       "categories": ["tech", "programming"]
     }
   ]
