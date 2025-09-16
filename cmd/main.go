@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/orhantugrul/medium-rsjs/src/feed"
+	"github.com/orhantugrul/medium-rsjs/internal/feed"
 )
 
 type Config struct {
@@ -55,7 +55,7 @@ func main() {
 
 	api := router.Group("/api")
 	{
-		feed.BindRoutes(api)
+		api.GET("/feed/:username", feed.GetFeed)
 
 		api.GET("/health", func(context *gin.Context) {
 			context.JSON(http.StatusOK, gin.H{
