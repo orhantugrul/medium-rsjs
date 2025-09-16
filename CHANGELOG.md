@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/orhantugrul/medium-rsjs/compare/v1.0.0...v1.0.1) (2025-09-16)
+
+
+### Bug Fixes
+
+* update Dockerfile to copy all source files and adjust build path ([759318e](https://github.com/orhantugrul/medium-rsjs/commit/759318ed6fdb017d14eee3b80d6f353c2f981cac))
+
 # 1.0.0 (2025-09-16)
 
 
