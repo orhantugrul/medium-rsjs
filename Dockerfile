@@ -12,10 +12,10 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 # Copy source code
-COPY src/ ./src/
+COPY . ./
 
 # Build the application
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main ./src/main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main ./cmd/main.go
 
 # Final stage
 FROM alpine:latest
