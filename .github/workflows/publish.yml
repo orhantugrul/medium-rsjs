@@ -1,8 +1,7 @@
-name: 🚀 Push to ghcr.io
+name: 🚀 Publish to ghcr.io
 on:
   push:
-    branches: ["main"]
-    tags: ["v*", "release-*"]
+    tags: ["v*"]
   pull_request:
   workflow_dispatch:
 permissions:
